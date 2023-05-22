@@ -1,4 +1,5 @@
-module.export = class Kaytak {
+var LivingCreature = require("./Allclasses")
+module.exports = class Kaytak extends LivingCreature {
     constructor(x, y) {
         this.x = x;
         this.y = y;
