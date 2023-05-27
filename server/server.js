@@ -81,8 +81,8 @@ function matrixGenerator(size, countGrass, countGrassEater, predatorCount, kayta
 
     }
     for (let k = 0; k < countGrass; k++) {
-        let x = Math.floor(random(size))
-        let y = Math.floor(random(size))
+        let x = Math.floor((Math.random() * size))
+        let y = Math.floor((Math.random() * size))
         if (matrix[y][x] == 0) {
             matrix[y][x] = 1
         }
@@ -93,8 +93,8 @@ function matrixGenerator(size, countGrass, countGrassEater, predatorCount, kayta
 
     }
     for (let k = 0; k < countGrassEater; k++) {
-        let x = Math.floor(random(size))
-        let y = Math.floor(random(size))
+        let x = Math.floor((Math.random() * size))
+        let y = Math.floor((Math.random() * size))
         if (matrix[y][x] == 0) {
             matrix[y][x] = 2
         }
@@ -103,8 +103,8 @@ function matrixGenerator(size, countGrass, countGrassEater, predatorCount, kayta
         }
     }
     for (let k = 0; k < predatorCount; k++) {
-        let x = Math.floor(random(size))
-        let y = Math.floor(random(size))
+        let x = Math.floor(Math.random() * size)
+        let y = Math.floor(Math.random() * size)
         if (matrix[y][x] == 0) {
             matrix[y][x] = 3
         }
@@ -112,8 +112,8 @@ function matrixGenerator(size, countGrass, countGrassEater, predatorCount, kayta
             k--
         }
         for (let k = 0; k < kaytakCount; k++) {
-            let x = Math.floor(random(size))
-            let y = Math.floor(random(size))
+            let x = Math.floor(Math.random() * size)
+            let y = Math.floor(Math.random() * size)
             if (matrix[y][x] == 0) {
                 matrix[y][x] = 4
 
@@ -127,8 +127,8 @@ function matrixGenerator(size, countGrass, countGrassEater, predatorCount, kayta
         }
 
         for (let k = 0; k < chariqCount; k++) {
-            let x = Math.floor(random(size))
-            let y = Math.floor(random(size))
+            let x = Math.floor((Math.random() * size))
+            let y = Math.floor((Math.random() * size))
             if (matrix[y][x] == 0) {
                 matrix[y][x] = 5
 
@@ -141,8 +141,8 @@ function matrixGenerator(size, countGrass, countGrassEater, predatorCount, kayta
 
         }
         for (let k = 0; k < bariqCount; k++) {
-            let x = Math.floor(random(size))
-            let y = Math.floor(random(size))
+            let x = Math.floor((Math.random() * size))
+            let y = Math.floor((Math.random() * size))
             if (matrix[y][x] == 0) {
                 matrix[y][x] = 6
 

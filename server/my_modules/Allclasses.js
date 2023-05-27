@@ -16,6 +16,10 @@ module.exports =class LivingCreature {
         ];
 
     }
+    random(arr){
+        let res = Math.floor(Math.random() * arr.length)
+        return arr[res]
+    }
     chooseCell(character) {
         var found = [];
         for (var i in this.directions) {

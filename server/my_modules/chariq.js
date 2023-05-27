@@ -38,7 +38,7 @@ module.exports = class Chariq extends LivingCreature {
 
     mul() {
       if (this.energy >= 10) {
-        var newCell = random(this.chooseCell(4)); 
+        var newCell = this.random(this.chooseCell(4)); 
         if (newCell) { 
           var chariq1 = new Chariq(newCell[0], newCell[1]);
           grassEaterArr.push(chariq1);

@@ -39,7 +39,7 @@ module.exports = class Kaytak extends LivingCreature {
         if (this.energy > -100) {
 
             let emptyCells = this.chooseCell(0)
-            let oneEmptyCell = random(emptyCells)
+            let oneEmptyCell = this.random(emptyCells)
             if (oneEmptyCell) {
                 matrix[this.y][this.x] = 0
                 let newX = oneEmptyCell[0]
@@ -55,7 +55,7 @@ module.exports = class Kaytak extends LivingCreature {
     eat() {
 
         let grasses = this.chooseCell(1)
-        let oneGrass = random(grasses)
+        let oneGrass = this.random(grasses)
         if (oneGrass) {
             this.energy++;
             matrix[this.y][this.x] = 0;

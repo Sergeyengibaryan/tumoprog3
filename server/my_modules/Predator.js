@@ -53,7 +53,7 @@ module.exports = class Predator extends LivingCreature {
     if (this.energy > 0) {
       this.energy--;
       var emptyCells = this.chooseCell(0)
-      var oneEmptyCell = random(emptyCells);
+      var oneEmptyCell = this.random(emptyCells);
       if (oneEmptyCell) {
         matrix[this.y][this.x] = 0;
         var newX = oneEmptyCell[0];
@@ -72,7 +72,7 @@ module.exports = class Predator extends LivingCreature {
     let eaters = this.chooseCell(2);
     let preds = this.chooseCell(1);
     let all = eaters.concat(preds);
-    let oneGrass = random(all);
+    let oneGrass = this.random(all);
     if (oneGrass) {
       this.energy++;
       matrix[this.y][this.x] = 0;
@@ -96,7 +96,7 @@ module.exports = class Predator extends LivingCreature {
   }
   mul() {
     this.multiply++;
-    var newCell = random(this.chooseCell(0));
+    var newCell = this.random(this.chooseCell(0));
     console.log(newCell);
     if (this.multiply >= 5 && newCell) {
       var newGrass = new Grass(newCell[0], newCell[1]);
