@@ -1,27 +1,14 @@
+var LivingCreature = require('./LivingCreature')
+let random = require("./random");
 
-class Chariq {
+module.exports=class Chariq extends LivingCreature{
     constructor(x, y) {
-      this.x = x;
-      this.y = y;
+      super(x,y)
       this.energy = 8;
       this.directions = [];
     }
   
-    chooseCell(character) {  
-      this.getNewCoordinates()
-        // empty cells array [[1,2], [2,4]]
-      let found = [] //
-      for (let i in this.directions) {
-        let x = this.directions[i][0]
-        let y = this.directions[i][1]
-        if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-          if (matrix[y][x] == character) { //
-            found.push(this.directions[i])
-          }
-        }
-      }
-      return found
-    }
+
   
     getNewCoordinates() {
       this.directions = [
@@ -35,15 +22,7 @@ class Chariq {
         [this.x + 1, this.y + 1]
       ];
     }
-    // die() {
-    //   matrix[this.y][this.x] = 0;
-    //   for (var i in grassEaterArr) {
-    //     if (this.x == grassEaterArr[i].x && this.y == grassEaterArr[i].y) {
-    //       grassEaterArr.splice(i, 1);//[[1,2],[2,3]]
-    //       break;
-    //     }
-    //   }
-    // }
+
     mul() {
       if (this.energy >= 10) {
         var newCell = random(this.chooseCell(4)); //newCell-1 datark harevan
@@ -70,9 +49,7 @@ class Chariq {
           this.x = newX
         }
       }
-    //   else {
-    //     this.die();
-    //   }
+
     }
   
     eat() {

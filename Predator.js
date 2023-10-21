@@ -1,11 +1,13 @@
-class Predator {
+var LivingCreature = require('./LivingCreature')
+let random = require("./random");
+
+module.exports=class Predator extends LivingCreature{
   constructor(x, y) {
-    this.x = x;
-    this.y = y;
+    super(x,y)
     this.energy = 4;
     this.directions = []
   }
-  //getting new coordinates for neighbor cells
+
   getNewCoordinates() {
     this.directions = [
       [this.x - 1, this.y - 1],
@@ -18,7 +20,7 @@ class Predator {
       [this.x + 1, this.y + 1]
     ];
   }
-  // choosing cell between empty(0) and grass(1)
+
   chooseCell(character) {
     this.getNewCoordinates()
     var found = [];
@@ -47,7 +49,7 @@ class Predator {
   }
 
 
-  // method that allows to move within changing cell coordinates
+
   move() {
     if (this.energy > 0) {
       this.energy--;
@@ -87,12 +89,7 @@ class Predator {
           break;
         }
       }
-      // for (var i in grassEaterArr) {
-      //   if (oneGrassX == grassEaterArr[i].x && oneGrassY == grassEaterArr[i].y) {
-      //     grassEaterArr.splice(i, 1);
-      //     break;
-      //   }
-      // }
+
 
     } else {
       this.move();
@@ -103,8 +100,6 @@ class Predator {
     var newCell = random(this.chooseCell(0));
     console.log(newCell);
     if (this.multiply >= 5 && newCell) {
-      var newGrass = new Grass(newCell[0], newCell[1]);
-      grassArr.push(newGrass);
       matrix[newCell[1]][newCell[0]] = 4;
       this.multiply = 0;
 
