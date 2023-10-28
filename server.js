@@ -20,11 +20,12 @@ var Bariq = require('./bariq')
 var Chariq = require('./chariq')
 var Predator = require('./Predator')
 var Kaytak = require('./kaytak')
+var Pojar = require('./pojar')
 
 
 sideX = 50;
 sideY = 70;
-side = 120;
+side = 100;
 grassArr = [];
 grassEaterArr = []
 predArr = []
@@ -32,7 +33,7 @@ kaytakArr = []
 chariqArr = []
 bariqArr = []
 matrix = []
-
+pojarArr = []
 function createMatrix() {
     for (let i = 0; i < sideX; i++) {
         matrix.push([])
@@ -130,83 +131,119 @@ function createMatrix() {
 
     matrixGenerator(30, 80, 4, 3, 10, 4, 4, 6)
 
-    for ( var y = 0; y < matrix.length; y++) {
-        for ( var x = 0; x < matrix[y].length; x++){
+    for (var y = 0; y < matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 1) {
-                let grass = new Grass(x,y)
+                let grass = new Grass(x, y)
                 grassArr.push(grass)
             }
-           else if (matrix[y][x] == 2) {
-                let grassEater = new GrassEater(x,y)
+            else if (matrix[y][x] == 2) {
+                let grassEater = new GrassEater(x, y)
                 grassEaterArr.push(grassEater)
-            } 
-            else if (matrix[y][x] == 3) {
-                let pred1 = new Predator(x,y)
-                predArr.push(pred1)
-            } 
-            else if (matrix[y][x] == 4) {
-                let kay = new Kaytak(x,y)
-                kaytakArr.push(kay)
-            } 
-            else if (matrix[y][x] == 5) {
-                let char = new Chariq(x,y)
-                chariqArr.push(char)
-            } 
-            else if (matrix[y][x] == 6) {
-                let bari = new Bariq(x,y)
-                bariqArr.push(bari)
             }
-        } 
+            else if (matrix[y][x] == 3) {
+                let pred1 = new Predator(x, y)
+                predArr.push(pred1)
+            }
+            else if (matrix[y][x] == 4) {
+                let kay = new Kaytak(x, y)
+                kaytakArr.push(kay)
+            }
+            else if (matrix[y][x] == 5) {
+                let char = new Chariq(x, y)
+                chariqArr.push(char)
+            }
+            else if (matrix[y][x] == 6) {
+                let bari = new Bariq(x, y)
+                bariqArr.push(bari)
+            } else if (matrix[y][x] == 7) {
+                let pojar = new Pojar(x, y)
+                pojarArr.push(pojar)
+            }
+        }
     }
 }
 
-createMatrix()
 
-function playGame(){
-    for (var i = 0; i < grassArr.length; i++){
+
+function playGame() {
+    for (var i = 0; i < grassArr.length; i++) {
         grassArr[i].mul();
     }
 
     for (var i = 0; i < grassEaterArr.length; i++) {
-        grassEaterArr[i].mul() 
-    } 
+        grassEaterArr[i].mul()
+    }
     for (var i = 0; i < grassEaterArr.length; i++) {
-        grassEaterArr[i].eat() 
-        
-    } 
+        grassEaterArr[i].eat()
+
+    }
     for (var i = 0; i < predArr.length; i++) {
         predArr[i].mul()
-        
-    } 
-    for (var i = 0; i < predArr.length; i++) { 
-        predArr[i].eat() 
-        
-    } 
-    for (var i = 0; i < kaytakArr.length; i++) { 
-        kaytakArr[i].eat() 
-        
-    } 
-        for (var i = 0; i < chariqArr.length; i++) { 
-            chariqArr[i].mul() 
-            
-        } 
 
-    setTimeout(function(){
+    }
+    for (var i = 0; i < predArr.length; i++) {
+        predArr[i].eat()
+
+    }
+    for (var i = 0; i < kaytakArr.length; i++) {
+        kaytakArr[i].eat()
+
+    }
+    for (var i = 0; i < chariqArr.length; i++) {
+        chariqArr[i].mul()
+
+    }
+
+    setTimeout(function () {
         for (var i = 0; i < chariqArr.length; i++) {
-            chariqArr[i].eat()   
-            
-        } 
-    },27000) 
+            chariqArr[i].eat()
 
-    setTimeout(function(){
+        }
+    }, 27000)
+
+    setTimeout(function () {
         for (var i = 0; i < bariqArr.length; i++) {
-            bariqArr[i].eat()   
-        } 
-    },43000) 
+            bariqArr[i].eat()
+        }
+    }, 43000)
 
     io.emit('MATRIX', matrix)
 }
 
-setInterval(function(){
-    playGame()
-},1000)
+
+
+io.on("connection", function (socket) {
+    createMatrix()
+    socket.emit('MATRIX', matrix)
+    setInterval(function () {
+        playGame()
+    }, 1000)
+
+    socket.on("p", function () {
+        for (var x = 0; x < matrix.length; x++) {
+            matrix[20][x] = 7;
+        }
+
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+// var clickCount = 0;
+// function clickHandler(evt) {
+
+
+// }
+// var p = document.getElementById("statistic");
+
+
+
